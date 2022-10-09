@@ -1,3 +1,5 @@
+import 'package:chat_app/pages/home.dart';
+import 'package:chat_app/services/auth_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'pages/login.dart';
@@ -15,12 +17,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Chat App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Chat App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: StreamBuilder(
+          stream: AuthServices().onchangedUser,
+          builder: (context, snapshot) {
+            return snapshot.data == null ? LoginPage() : HomePage();
+          },
+        ));
   }
 }

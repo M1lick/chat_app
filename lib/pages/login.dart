@@ -1,3 +1,4 @@
+import 'package:chat_app/services/auth_services.dart';
 import 'package:chat_app/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/config/function.dart';
@@ -36,10 +37,14 @@ class LoginPage extends StatelessWidget {
                 prefix: const Icon(Icons.vpn_key),
                 keyboardType: TextInputType.emailAddress,
                 hint: 'Entrez votre mot de pass',
+                obscureText: true,
               ),
               const SizedBox(height: 15),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await AuthServices()
+                      .singnIn(emailController.text, passController.text);
+                },
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
