@@ -17,9 +17,7 @@ class MessageComponent extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                  color: msg!.isMe
-                      ? Colors.blueAccent[100]
-                      : Colors.black.withOpacity(.7),
+                  color: msg!.isMe ? Colors.blue : Colors.black,
                   borderRadius: BorderRadius.only(
                     topLeft: const Radius.circular(10),
                     topRight: const Radius.circular(10),
@@ -31,11 +29,11 @@ class MessageComponent extends StatelessWidget {
                         : const Radius.circular(0),
                   )),
               constraints: BoxConstraints(
-                  minHeight: 40, minWidth: 50, maxHeight: width / 1.1),
+                  minHeight: 50, minWidth: 70, maxHeight: width / 1.1),
               child: Text(
                 msg!.content!,
                 textAlign: TextAlign.start,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
             Positioned(
@@ -45,7 +43,7 @@ class MessageComponent extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 5, bottom: 1),
                     child: Text(
                       '${date.hour}h${date.minute}',
-                      style: const TextStyle(fontSize: 10, color: Colors.white),
+                      style: const TextStyle(fontSize: 12, color: Colors.white),
                     )))
           ],
         )
